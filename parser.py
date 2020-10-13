@@ -12,7 +12,10 @@ def _reader(filename):
         return content
 
 def child_nodes(parsed):
-    print('The children of ', parsed,  ' are:',parsed._fields)
+    try:
+        print('The children of ', astunparse.unparse(parsed),  ' are:',parsed._fields)
+    except AttributeError:
+        print('The children of ', parsed,  ' are:',parsed._fields)
     g = ast.iter_child_nodes(parsed)
     for item in g:
         child_nodes(item)
